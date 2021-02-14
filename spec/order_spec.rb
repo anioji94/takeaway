@@ -41,5 +41,10 @@ describe Order do
 		it 'should return a message when an order is confirmed' do
 			expect{ subject.confirm_order }.to output(String).to_stdout
 		end
+
+		it 'should reset the cart after placing the order' do
+			subject.cart << pizza
+			expect{ subject.confirm_order }.to change{ subject.cart.count }.by(-1)
+		end
 	end
 end
