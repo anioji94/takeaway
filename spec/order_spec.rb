@@ -18,12 +18,9 @@ describe Order do
 		end
 
 		context 'when the cart is full' do
-			before do
-				@cart = [ramen, pizza, beer, rice]
-			end
 			it 'should return the total price of all items' do
-				puts @cart_total
-				expect(subject.total).to be 27
+				subject.cart << pizza
+				expect(subject.total).to eq 12
 			end
 		end
 
@@ -31,6 +28,18 @@ describe Order do
 			it 'should return a total of 0' do
 				expect(subject.total).to be 0
 			end
+		end
+	end
+
+	describe '#receipt' do
+		it 'should return a string' do
+			expect{ subject.receipt }.to output(String).to_stdout
+		end
+	end
+
+	describe '#confirm_order' do
+		it 'should return a message when an order is confirmed' do
+			expect{ subject.confirm_order }.to output(String).to_stdout
 		end
 	end
 end

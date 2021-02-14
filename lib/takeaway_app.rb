@@ -1,6 +1,6 @@
 require_relative 'dish'
 require_relative 'order'
-
+require_relative 'twilio'
 class TakeawayApp
 	attr_reader :available_dishes, :order
 
@@ -22,9 +22,15 @@ class TakeawayApp
 	def select(dish)
 		# select will send a dish to Order's cart 
 		order.cart << dish 
+		order.cart.flatten if dish == Array 
 	end
 
 end
+
+ramen = Dish.new('Ramen', 8)
+pizza = Dish.new('Pizza', 12)
+beer = Dish.new('Beer', 4)
+rice = Dish.new('Rice', 3)
 
 # As a customer
 # So that I can check if I want to order something

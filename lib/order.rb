@@ -6,9 +6,20 @@ class Order
 	end
 
 	def total
-			@cart_total = []
-			@cart.each{ |item| @cart_total << item.price }
-			@cart_total.sum
+		@cart_total = []
+		@cart.each{ |item| @cart_total << item.price }
+		@cart_total.sum
+	end
+
+	def receipt
+	# should return a list of all the items with price and finally the total
+		@cart.each{ |item| puts "#{item.name}, £#{item.price}"}
+		puts "Your Total is: £#{total}"
+	end
+
+	def confirm_order
+		puts "Thank you! Your order was placed and will be delivered before 18:52"
+		@cart.clear
 	end
 end
 
